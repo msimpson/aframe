@@ -8,7 +8,6 @@ module.exports.coordinates = require('./coordinates');
 module.exports.debug = require('./debug');
 module.exports.material = require('./material');
 module.exports.styleParser = require('./styleParser');
-module.exports.queryParams = require('./queryParams');
 
 /**
  * Fires a custom DOM event.
@@ -25,29 +24,6 @@ module.exports.fireEvent = function (el, name, data) {
   var evt = new CustomEvent(name, data);
   evt.target = el;
   el.dispatchEvent(evt);
-};
-
-/**
- * Throws an error given a message.
- *
- * @param {String} msg Error message.
- */
-module.exports.error = function (msg) {
-  throw new Error(msg);
-};
-
-/**
- * Emits a console warning given passed message argument(s).
- */
-module.exports.warn = function () {
-  console.warn.apply(console, arguments);
-};
-
-/**
- * Emits a console log given passed message argument(s).
- */
-module.exports.log = function () {
-  console.log.apply(console, arguments);
 };
 
 /**
