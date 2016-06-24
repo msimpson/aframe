@@ -77,7 +77,6 @@ module.exports = registerElement('a-scene', {
         initWakelock(this);
 
         window.addEventListener('load', resize);
-        window.addEventListener('beforeunload', this.exitVR.bind(this));
         window.addEventListener('resize', resize);
         this.play();
       },
@@ -138,8 +137,12 @@ module.exports = registerElement('a-scene', {
             window.screen.orientation.lock('landscape');
           }
         }
-        function enterVRFailure () {
-          throw new Error('enter VR mode error. requestPresent failed');
+        function enterVRFailure (err) {
+          if (err && err.message) {
+            throw new Error('Failed to enter VR mode (`requestPresent`): ' + err.message);
+          } else {
+            throw new Error('Failed to enter VR mode (`requestPresent`).');
+          }
         }
       }
     },
@@ -157,8 +160,12 @@ module.exports = registerElement('a-scene', {
           self.resize();
           self.emit('exit-vr', {target: self});
         }
-        function exitVRFailure () {
-          throw new Error('exit VR mode error. exitPresent failed');
+        function exitVRFailure (err) {
+          if (err && err.message) {
+            throw new Error('Failed to exit VR mode (`exitPresent`): ' + err.message);
+          } else {
+            throw new Error('Failed to exit VR mode (`exitPresent`).');
+          }
         }
       }
     },

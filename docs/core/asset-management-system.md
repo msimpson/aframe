@@ -47,7 +47,7 @@ We can define all of our assets in `<a-assets>` and point to those assets from o
 
 Then the scene will wait for all of the assets for rendering.
 
-## Cross-Origin
+## Cross-Origin Resources
 
 Loading assets from a different domain requires [cross-origin resource sharing (CORS) headers][cors]. Else we have to serve the asset ourselves.
 
@@ -117,9 +117,9 @@ Since `<a-assets>` and `<a-asset-item>` are *nodes* in A-Frame, they will emit t
 |------------|---------------------------------------|
 | loaded     | Asset pointed to by `src` was loaded. |
 
-## HTMLMediaElement
+## `HTMLMediaElement`
 
-Audio and video assets are [HTMLMediaElement][mediael]s. These events are provided by the browser, but noted here for convenience:
+Audio and video assets are [`HTMLMediaElement`][mediael]s. The browser triggers particular events on these elements; noted here for convenience:
 
 | Event Name | Description                           |
 |------------|---------------------------------------|
@@ -127,9 +127,10 @@ Audio and video assets are [HTMLMediaElement][mediael]s. These events are provid
 | loadeddata | Progress.                             |
 | progress   | Progress.                             |
 
-A-Frame uses the progress events, comparing how much time was buffered with the duration of the asset, in order to detect when the asset has been loaded.
+A-Frame uses these progress events, comparing how much time was buffered with the duration of the asset, in order to detect when the asset has been loaded.
 
 [cors]: https://en.wikipedia.org/wiki/Cross-origin_resource_sharing
+[corsimage]: https://developer.mozilla.org/docs/Web/HTML/CORS_enabled_image
 [ghpages]: https://pages.github.com/
 [mediael]: https://developer.mozilla.org/docs/Web/API/HTMLMediaElement
 [mixins]: ./mixins.md
